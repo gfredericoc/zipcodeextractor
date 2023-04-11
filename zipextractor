@@ -1,0 +1,14 @@
+# call string
+endereco = "Rua São Luis, 256, apartamento 203, Itabaiana-SE, 23440  - 120"
+# call libraries: RE/string
+import string
+import re #RE - regular expression
+#clear string from unnecessary spaces
+endereco = endereco.translate({ord(c): None for c in string.whitespace})
+# extract ZIPcode patterns: 5 numbers + hyphen(optional) + 3 numbers -> brazilian pattern
+padrao = re.compile("[0-9]{5}[-]{0,1}[0-9]{3}")
+busca = padrao.search(endereco)  # return a match
+
+if busca:
+    cep = busca.group()
+    print("Seu cep é",cep)
